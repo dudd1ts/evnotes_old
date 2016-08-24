@@ -1,0 +1,29 @@
+baseurl = "http://www.evnotes.ru/"
+theme = "ghostwriter"
+languageCode = "ru-RU"
+title = "Дело было вечером"
+disqusShortname = "evnotes"
+copyright = "Кондрашев Сергей"
+
+[Params]
+    intro = true
+    name = "Кондрашев Сергей"
+    headline = "Дело было вечером"
+    description = "Блог любопытного программиста"
+    email = "kserg90@gmail.com"
+    github = "https://github.com/dudd1ts"
+    vk = "http://vk.com/id16180812"
+
+[Taxonomies]
+    tag = "tags"
+
+[[menu.main]]
+    name = "Блог"
+    url = "/"
+    weight = 1
+
+[[menu.main]]
+    name = "Об авторе"
+    url = "/page/about/"
+    weight = 2
+
