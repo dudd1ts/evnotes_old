@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Несколько версий Python в Linux</title>
+        <meta name="description" content="Блог любопытного программиста">
+        <meta name="HandheldFriendly" content="True">
+        <meta name="MobileOptimized" content="320">
+        <meta name="generator" content="Hugo 0.16" />
+        <meta name="robots" content="index,follow">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="http://www.evnotes.ru/css/normalize.css">
+        <link rel="stylesheet" href="http://www.evnotes.ru/css/highlight.css">
+        <link rel="stylesheet" href="http://www.evnotes.ru/css/style.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,400,600,700,300&subset=latin,cyrillic-ext,latin-ext,cyrillic">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    </head>
+    <body>
+        
+
+        <div id="wrapper">
+            <header class="site-header">
+                <div class="container">
+                    <div class="site-title-wrapper">
+                        
+                            <a class="button-square button-social hint--top" data-hint="Несколько версий Python в Linux" title="Несколько версий Python в Linux" href="http://www.evnotes.ru/">
+                                <i class="fa fa-home"></i>
+                            </a>
+                        
+                        <a class="button-square" href="http://www.evnotes.ru/index.xml"><i class="fa fa-rss"></i></a>
+                        
+                        
+                            <a class="button-square button-social hint--top" data-hint="Github" title="Github" href="https://github.com/dudd1ts" target="_blank">
+                                <i class="fa fa-github-alt"></i>
+                            </a>
+                        
+                        
+                        
+                        
+                        
+                            <a class="button-square button-social hint--top" data-hint="ВКонтакте" title="ВКонтакте" href="http://vk.com/id16180812" target="_blank">
+                                <i class="fa fa-vk"></i>
+                            </a>
+                        
+                        
+                            <a class="button-square button-social hint--top" data-hint="Email" title="Email" href="mailto:kserg90@gmail.com" target="_blank">
+                                <i class="fa fa-envelope"></i>
+                            </a>
+                        
+                    </div>
+
+                    <ul class="site-nav">
+                        
+    <li class="site-nav-item">
+        <a title="Блог" href="/">Блог</a>
+    </li>
+
+    <li class="site-nav-item">
+        <a title="Об авторе" href="/page/about/">Об авторе</a>
+    </li>
+
+                    </ul>
+                </div>
+            </header>
+
+            <div id="container">
+
+
+<div class="container">
+    <article class="post-container" itemscope="" itemtype="http://schema.org/BlogPosting">
+        <header class="post-header">
+    <h1 class="post-title" itemprop="name headline">Несколько версий Python в Linux</h1>
+    
+    <p class="post-date">
+        <span>Опубликовано <time datetime="2016-02-22" itemprop="datePublished">2016-02-22</time></span>
+        
+    </p>
+</header>
+
+        <div class="post-content clearfix" itemprop="articleBody">
+    
+
+    <p>В этой заметке я коротко опишу как можно установить несколько версий python на одной системе linux, а также пару подводных камней, связанных c работой sqlite3 и консоли python, с которыми, при этом, можно столкнуться.</p>
+
+<p>Для начала нужно скачать исходники нужной версии. Открываем терминал в папке где хотим их разместить и вводим:</p>
+
+<pre><code class="language-bash">wget http://www.python.org/ftp/python/3.5.1/Python-3.5.1.tgz
+</code></pre>
+
+<p>В этой команде можно просто поменять цифры на ту версию python, которая вам нужна.</p>
+
+<p>Распаковываем скачанное и переходим в извлеченную директорию:</p>
+
+<pre><code class="language-bash">tar -xvf Python-3.5.1.tgz
+cd Python-3.5.1
+</code></pre>
+
+<p>Устанавливаем в желаемую директорию:</p>
+
+<pre><code class="language-bash">./configure --prefix=$HOME/python/3.5.1/
+make &amp;&amp; make install
+</code></pre>
+
+<p>Если вы собираетесь использовать в своих проектах sqlite3, то перед установкой нужно удостовериться, что необходимый пакет установлен в системе:</p>
+
+<pre><code class="language-bash">sudo apt-get update &amp;&amp; sudo apt-get upgrade
+sudo apt-get install libsqlite3-dev
+</code></pre>
+
+<p>А при при установке передать конфигуратору дополнительный флаг:</p>
+
+<pre><code class="language-bash">./configure --prefix=$HOME/python/3.5.1/ --enable-loadable-sqlite-extensions
+</code></pre>
+
+<p>Теперь можно запускать установленную версию или напрямую:</p>
+
+<pre><code class="language-bash">~/python/3.5.1/bin/python3
+</code></pre>
+
+<p>или используя, например, viertualenv:</p>
+
+<pre><code class="language-bash">virtualenv --python=$HOME/python/3.5.1/bin/python3 env_name
+. ./env_name/bin/activate
+</code></pre>
+
+<p>Если при использовании python в консоли у Вас не правильно работают клавиши со стрелочками на клавиатуре (невозможно перемещать курсор по строке и перебирать команды в истории), то в  этом случае поможет установка модуля readline:</p>
+
+<pre><code class="language-bash">sudo apt-get install libncurses5-dev
+pip install readline
+</code></pre>
+
+<p>Вот и все, теперь вы счастливые обладатели python нужной вам версии.</p>
+
+</div>
+
+        <footer class="post-footer clearfix">
+    
+
+    <div class="share">
+        <a class="icon-twitter" href="http://twitter.com/share?text=%d0%9d%d0%b5%d1%81%d0%ba%d0%be%d0%bb%d1%8c%d0%ba%d0%be%20%d0%b2%d0%b5%d1%80%d1%81%d0%b8%d0%b9%20Python%20%d0%b2%20Linux&url=http%3a%2f%2fwww.evnotes.ru%2fpost%2fmultiple-python%2f"
+            onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+            <i class="fa fa-twitter"></i>
+            <span class="hidden">Twitter</span>
+        </a>
+
+        <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fwww.evnotes.ru%2fpost%2fmultiple-python%2f"
+            onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+            <i class="fa fa-facebook"></i>
+            <span class="hidden">Facebook</span>
+        </a>
+
+        <a class="icon-google-plus" href="https://plus.google.com/share?url=http%3a%2f%2fwww.evnotes.ru%2fpost%2fmultiple-python%2f"
+           onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+           <i class="fa fa-google-plus"></i>
+            <span class="hidden">Google+</span>
+        </a>
+
+        <a class="icon-google-plus" href="http://vk.com/share.php?url=http%3a%2f%2fwww.evnotes.ru%2fpost%2fmultiple-python%2f&title=%d0%9d%d0%b5%d1%81%d0%ba%d0%be%d0%bb%d1%8c%d0%ba%d0%be%20%d0%b2%d0%b5%d1%80%d1%81%d0%b8%d0%b9%20Python%20%d0%b2%20Linux"
+           onclick="window.open(this.href, 'vk-share', 'width=490,height=530');return false;">
+           <i class="fa fa-vk"></i>
+            <span class="hidden">Вконтакте</span>
+        </a>
+    </div>
+</footer>
+
+        
+    <div class="comments">
+        <div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'evnotes';
+    var disqus_identifier = 'http:\/\/www.evnotes.ru\/post\/multiple-python\/';
+    var disqus_title = 'Несколько версий Python в Linux';
+    var disqus_url = 'http:\/\/www.evnotes.ru\/post\/multiple-python\/';
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </div>
+
+    </article>
+</div>
+
+            </div>
+        </div>
+
+        <footer class="footer">
+            <div class="container">
+                <div class="site-title-wrapper">
+                    <h1 class="site-title">
+                        <a title="Дело было вечером" href="http://www.evnotes.ru/">Дело было вечером</a>
+                    </h1>
+                    <a class="button-square button-jump-top js-jump-top" href="#">
+                        <i class="fa fa-angle-up"></i>
+                    </a>
+                </div>
+
+                <p class="footer-copyright">
+                    <span>&copy; 2016 Кондрашев Сергей</span>
+                </p>
+                <div class="footer-copyright">
+                    <span>Powered by <a href="http://gohugo.io/">Hugo</a></span>
+                </div>
+                <div class="footer-copyright">
+                    <span><a href="https://github.com/roryg/ghostwriter">Ghostwriter theme</a> By <a href="http://jollygoodthemes.com">JollyGoodThemes</a></span>
+                    <span>/ <a href="https://github.com/jbub/ghostwriter">Ported</a> to Hugo By <a href="https://github.com/jbub">jbub</a></span>
+                </div>
+            </div>
+        </footer>
+
+        <script src="http://www.evnotes.ru/js/jquery-1.11.3.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.5/highlight.min.js"></script>
+        <script src="http://www.evnotes.ru/js/jquery.fitvids.js"></script>
+        <script src="http://www.evnotes.ru/js/scripts.js"></script>
+    </body>
+</html>
+

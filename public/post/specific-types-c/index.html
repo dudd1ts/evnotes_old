@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Специфичные типы данных в C</title>
+        <meta name="description" content="Блог любопытного программиста">
+        <meta name="HandheldFriendly" content="True">
+        <meta name="MobileOptimized" content="320">
+        <meta name="generator" content="Hugo 0.16" />
+        <meta name="robots" content="index,follow">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="http://www.evnotes.ru/css/normalize.css">
+        <link rel="stylesheet" href="http://www.evnotes.ru/css/highlight.css">
+        <link rel="stylesheet" href="http://www.evnotes.ru/css/style.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,400,600,700,300&subset=latin,cyrillic-ext,latin-ext,cyrillic">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    </head>
+    <body>
+        
+
+        <div id="wrapper">
+            <header class="site-header">
+                <div class="container">
+                    <div class="site-title-wrapper">
+                        
+                            <a class="button-square button-social hint--top" data-hint="Специфичные типы данных в C" title="Специфичные типы данных в C" href="http://www.evnotes.ru/">
+                                <i class="fa fa-home"></i>
+                            </a>
+                        
+                        <a class="button-square" href="http://www.evnotes.ru/index.xml"><i class="fa fa-rss"></i></a>
+                        
+                        
+                            <a class="button-square button-social hint--top" data-hint="Github" title="Github" href="https://github.com/dudd1ts" target="_blank">
+                                <i class="fa fa-github-alt"></i>
+                            </a>
+                        
+                        
+                        
+                        
+                        
+                            <a class="button-square button-social hint--top" data-hint="ВКонтакте" title="ВКонтакте" href="http://vk.com/id16180812" target="_blank">
+                                <i class="fa fa-vk"></i>
+                            </a>
+                        
+                        
+                            <a class="button-square button-social hint--top" data-hint="Email" title="Email" href="mailto:kserg90@gmail.com" target="_blank">
+                                <i class="fa fa-envelope"></i>
+                            </a>
+                        
+                    </div>
+
+                    <ul class="site-nav">
+                        
+    <li class="site-nav-item">
+        <a title="Блог" href="/">Блог</a>
+    </li>
+
+    <li class="site-nav-item">
+        <a title="Об авторе" href="/page/about/">Об авторе</a>
+    </li>
+
+                    </ul>
+                </div>
+            </header>
+
+            <div id="container">
+
+
+<div class="container">
+    <article class="post-container" itemscope="" itemtype="http://schema.org/BlogPosting">
+        <header class="post-header">
+    <h1 class="post-title" itemprop="name headline">Специфичные типы данных в C</h1>
+    
+    <p class="post-date">
+        <span>Опубликовано <time datetime="2016-01-16" itemprop="datePublished">2016-01-16</time></span>
+        
+    </p>
+</header>
+
+        <div class="post-content clearfix" itemprop="articleBody">
+    
+
+    
+
+<p>Дабы самому получше уложить в голове типы данных, не являющихся базовыми, попробую кратко систематизировать информацию о них в этом посте.</p>
+
+<h2 id="целочисленные-типы-фиксированного-размера">Целочисленные типы фиксированного размера</h2>
+
+<p>В C99 к списку файлов стандартной библиотеки C, среди прочих добавился заголовочный файл <code>&lt;stdint.h&gt;</code>, в котором определены многие целочисленные типы, которые ранее были определены в разных  файлах:</p>
+
+<p><code>int(N)_t</code>, <code>uint(N)_t</code> — типы, всегда занимающие N бит, независимо от платформы;
+<code>int_least(N)_t</code>, <code>uint_least(N)_t</code> — типы, занимающие минимум N бит;
+<code>int_fast(N)_t</code>, <code>uint_fast(N)_t</code> — аналогичны предыдущим, но имеют самую быструю реализацию для данной машины;
+<code>intmax_t</code>, <code>uintmax_t</code> — типы, имеющие максимально возможный размер (используются, например, для вывода через <em>printf</em> переменных неизвестной длины, используя модификатор <em>j</em>)</p>
+
+<p><strong>N</strong> может может принимать значения 8, 16, 32 или 64 (например <code>int_least16_t</code>). Приставка <strong>u</strong> указывает на то, что тип является беззнаковым.</p>
+
+<h2 id="булевы-типы">Булевы типы</h2>
+
+<p>C99 добавил поддержку булева типа <code>_Bool</code>.  Также в новом заголовочном файле <code>&lt;stdbool.h&gt;</code> определен более удобный псевдоним <code>bool</code> для этого типа и макросы <strong>true</strong> и <strong>false</strong>. Тип <code>_Bool</code>  является обычным целочисленным типом, с той разницей, что любое присвоенное ему значение, отличное от нуля сохраняется как 1. Кстати, он имеет такое странное название для обеспечения обратной совместимости, так как во многих уже существующих программах был определен свой тип <code>bool</code>.</p>
+
+<h2 id="типы-используемые-для-адресной-арифметики">Типы используемые для адресной арифметики</h2>
+
+<p>В эти типы можно записать максимальный индекс самых больших массивов. А также размер указателей и массивов любого типа, который может быть выделен на данной архитектуре. Их использование имеет смысл, так как в настоящее время размер <em>int</em> не всегда равен размеру машинного слова. Поэтому для обеспечения переносимости и надежности лучше использовать представленные ниже типы в местах, где предполагается их использование.</p>
+
+<p><code>size_t</code> — беззнаковый целочисленный тип. Широко применяется в стандартной библиотеке для указания размеров в байтах, счетчиков циклов, индексации массивов и адресной арифметики.  Определен в <code>&lt;stddef.h&gt;</code>.
+<code>uintptr_t</code> — аналог <code>size_t</code>. Предполагается использование для безопасного хранения указателей, на что намекает их название.
+<code>ptrdiff_t</code> — знаковый целочисленный тип. Является типом результата выражения, где один указатель вычитается из другого (ptr1 - ptr2).
+<code>intptr_t</code> — аналог <code>ptrdiff_t</code>, но опять же имеет более подходящее название для хранения указателей.</p>
+
+<h2 id="математические-типы">Математические типы</h2>
+
+<p>В C99 в файле <code>&lt;complex.h&gt;</code>  добавлены новые типы для поддержки комплексных чисел <code>float _Complex</code>, <code>double _Complex</code>, <code>long double _Complex</code>.</p>
+
+<p>В файле  <code>&lt;math.h&gt;</code> добавлены типы <code>float_t</code> и <code>double_t</code>. Они имеют различные размеры в зависимости от установленного значения константы FLT_EVAL_METHOD. При значении 0 они эквивалентны типам <code>float</code> и <code>double</code>, при значении 1 — <code>double</code>, а при значении 2  — <code>long double</code>.</p>
+
+<p>И с новым файлом <code>&lt;fenv.h&gt;</code> пришли новые типы <code>fenv_t</code> и <code>fexcept_t</code>. Первый представляет окружение для работы с числами с плавающей точкой, а второй коллекцию флагов этого окружения.</p>
+
+<h2 id="другие-типы-местечкового-применения">Другие типы местечкового применения</h2>
+
+<p>Также стандартная библиотека определяет еще довольно много типов, таких как: <code>fpos_t</code>, использующийся для определения позиции каждого байта при чтении/записи, <code>va_list</code> — для передачи переменного числа аргументов в функцию, <code>wchar_t</code> — для представления &ldquo;широких символов&rdquo;. Описание всех их может раздуть пост до размеров книги. Да и нет смысла описывать их скопом. Возвращаться к ним лучше при рассмотрении конкретной темы, связанной с областью их применения.</p>
+
+</div>
+
+        <footer class="post-footer clearfix">
+    
+
+    <div class="share">
+        <a class="icon-twitter" href="http://twitter.com/share?text=%d0%a1%d0%bf%d0%b5%d1%86%d0%b8%d1%84%d0%b8%d1%87%d0%bd%d1%8b%d0%b5%20%d1%82%d0%b8%d0%bf%d1%8b%20%d0%b4%d0%b0%d0%bd%d0%bd%d1%8b%d1%85%20%d0%b2%20C&url=http%3a%2f%2fwww.evnotes.ru%2fpost%2fspecific-types-c%2f"
+            onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+            <i class="fa fa-twitter"></i>
+            <span class="hidden">Twitter</span>
+        </a>
+
+        <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fwww.evnotes.ru%2fpost%2fspecific-types-c%2f"
+            onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+            <i class="fa fa-facebook"></i>
+            <span class="hidden">Facebook</span>
+        </a>
+
+        <a class="icon-google-plus" href="https://plus.google.com/share?url=http%3a%2f%2fwww.evnotes.ru%2fpost%2fspecific-types-c%2f"
+           onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+           <i class="fa fa-google-plus"></i>
+            <span class="hidden">Google+</span>
+        </a>
+
+        <a class="icon-google-plus" href="http://vk.com/share.php?url=http%3a%2f%2fwww.evnotes.ru%2fpost%2fspecific-types-c%2f&title=%d0%a1%d0%bf%d0%b5%d1%86%d0%b8%d1%84%d0%b8%d1%87%d0%bd%d1%8b%d0%b5%20%d1%82%d0%b8%d0%bf%d1%8b%20%d0%b4%d0%b0%d0%bd%d0%bd%d1%8b%d1%85%20%d0%b2%20C"
+           onclick="window.open(this.href, 'vk-share', 'width=490,height=530');return false;">
+           <i class="fa fa-vk"></i>
+            <span class="hidden">Вконтакте</span>
+        </a>
+    </div>
+</footer>
+
+        
+    <div class="comments">
+        <div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'evnotes';
+    var disqus_identifier = 'http:\/\/www.evnotes.ru\/post\/specific-types-c\/';
+    var disqus_title = 'Специфичные типы данных в C';
+    var disqus_url = 'http:\/\/www.evnotes.ru\/post\/specific-types-c\/';
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </div>
+
+    </article>
+</div>
+
+            </div>
+        </div>
+
+        <footer class="footer">
+            <div class="container">
+                <div class="site-title-wrapper">
+                    <h1 class="site-title">
+                        <a title="Дело было вечером" href="http://www.evnotes.ru/">Дело было вечером</a>
+                    </h1>
+                    <a class="button-square button-jump-top js-jump-top" href="#">
+                        <i class="fa fa-angle-up"></i>
+                    </a>
+                </div>
+
+                <p class="footer-copyright">
+                    <span>&copy; 2016 Кондрашев Сергей</span>
+                </p>
+                <div class="footer-copyright">
+                    <span>Powered by <a href="http://gohugo.io/">Hugo</a></span>
+                </div>
+                <div class="footer-copyright">
+                    <span><a href="https://github.com/roryg/ghostwriter">Ghostwriter theme</a> By <a href="http://jollygoodthemes.com">JollyGoodThemes</a></span>
+                    <span>/ <a href="https://github.com/jbub/ghostwriter">Ported</a> to Hugo By <a href="https://github.com/jbub">jbub</a></span>
+                </div>
+            </div>
+        </footer>
+
+        <script src="http://www.evnotes.ru/js/jquery-1.11.3.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.5/highlight.min.js"></script>
+        <script src="http://www.evnotes.ru/js/jquery.fitvids.js"></script>
+        <script src="http://www.evnotes.ru/js/scripts.js"></script>
+    </body>
+</html>
+

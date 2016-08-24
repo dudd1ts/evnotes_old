@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on Дело было вечером</title>
+    <link>http://www.evnotes.ru/post/</link>
+    <description>Recent content in Posts on Дело было вечером</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ru-RU</language>
+    <copyright>Кондрашев Сергей</copyright>
+    <lastBuildDate>Mon, 22 Feb 2016 21:41:28 +0300</lastBuildDate>
+    <atom:link href="http://www.evnotes.ru/post/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Несколько версий Python в Linux</title>
+      <link>http://www.evnotes.ru/post/multiple-python/</link>
+      <pubDate>Mon, 22 Feb 2016 21:41:28 +0300</pubDate>
+      
+      <guid>http://www.evnotes.ru/post/multiple-python/</guid>
+      <description>&lt;p&gt;В этой заметке я коротко опишу как можно установить несколько версий python на одной системе linux, а также пару подводных камней, связанных c работой sqlite3 и консоли python, с которыми, при этом, можно столкнуться.&lt;/p&gt;
+
+&lt;p&gt;Для начала нужно скачать исходники нужной версии. Открываем терминал в папке где хотим их разместить и вводим:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;wget http://www.python.org/ftp/python/3.5.1/Python-3.5.1.tgz
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;В этой команде можно просто поменять цифры на ту версию python, которая вам нужна.&lt;/p&gt;
+
+&lt;p&gt;Распаковываем скачанное и переходим в извлеченную директорию:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;tar -xvf Python-3.5.1.tgz
+cd Python-3.5.1
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Устанавливаем в желаемую директорию:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;./configure --prefix=$HOME/python/3.5.1/
+make &amp;amp;&amp;amp; make install
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Если вы собираетесь использовать в своих проектах sqlite3, то перед установкой нужно удостовериться, что необходимый пакет установлен в системе:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;sudo apt-get update &amp;amp;&amp;amp; sudo apt-get upgrade
+sudo apt-get install libsqlite3-dev
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;А при при установке передать конфигуратору дополнительный флаг:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;./configure --prefix=$HOME/python/3.5.1/ --enable-loadable-sqlite-extensions
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Теперь можно запускать установленную версию или напрямую:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;~/python/3.5.1/bin/python3
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;или используя, например, viertualenv:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;virtualenv --python=$HOME/python/3.5.1/bin/python3 env_name
+. ./env_name/bin/activate
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Если при использовании python в консоли у Вас не правильно работают клавиши со стрелочками на клавиатуре (невозможно перемещать курсор по строке и перебирать команды в истории), то в  этом случае поможет установка модуля readline:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;sudo apt-get install libncurses5-dev
+pip install readline
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Вот и все, теперь вы счастливые обладатели python нужной вам версии.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Вы уже знали то что здесь прочтете</title>
+      <link>http://www.evnotes.ru/post/you-already-knew/</link>
+      <pubDate>Wed, 10 Feb 2016 19:28:46 +0300</pubDate>
+      
+      <guid>http://www.evnotes.ru/post/you-already-knew/</guid>
+      <description>&lt;p&gt;Итак, о чем я.&lt;br /&gt;
+Наше восприятие окружающего мира это, временами, штука довольно странная. И странность эта обусловлена целым букетом &lt;a href=&#34;https://ru.wikipedia.org/wiki/%D0%A1%D0%BF%D0%B8%D1%81%D0%BE%D0%BA_%D0%BA%D0%BE%D0%B3%D0%BD%D0%B8%D1%82%D0%B8%D0%B2%D0%BD%D1%8B%D1%85_%D0%B8%D1%81%D0%BA%D0%B0%D0%B6%D0%B5%D0%BD%D0%B8%D0%B9&#34;&gt;когнитивных искажений&lt;/a&gt; когнитивных искажений.  Сегодня я хочу поговорить о &lt;em&gt;ретроспективном когнитивном искажении&lt;/em&gt;, которое мешает нам всерьез относится к получаемым знаниями и критически относиться к тому, что как нам кажется, мы уже знаем.&lt;/p&gt;
+
+&lt;p&gt;Заключается  ретроспективное искажение в том, что когда человек узнает что-то новое ему кажется что он всегда это знал (или догадывался). Происходит так потому что, получая информацию,  мозг сначала добавляет её в нашу картину мира, а уже потом эта информация доходит до нашего сознания. Сознание заглядывает в память и обнаруживает что эти знания-то уже там — в общем, опять ничего нового Но проблема в том, что знания эти помещаются в кратковременную память, которая как память авторегистратора через пол часа перезапишется чем-нибудь и полученная информация успешно выветрится из головы.  То есть оглядываетесь назад на вещи, которые только что изучили, вы обычно считаете, что всегда это знали или были уверены, что все так и есть.&lt;/p&gt;
+
+&lt;p&gt;Например, поэтому  при обучении, простое чтение учебников, без какой-либо практики мало что дает. Все примеры в книгах по программированию кажутся очевидными пока вы их читаете. Но если не использовать их  самому, то спустя очень небольшое время практически ничего толком не получится вспомнить, не то чтобы применить в работе.  Особенно интересным мне это видится в отношении изучения алгоритмов. Большинство из них ведь очевидны во время чтения, не так ли? ;)&lt;/p&gt;
+
+&lt;p&gt;Также знание о существовании ретроспективного когнитивного искажения, обнаруживает ценность написания более простого для чтения кода,  возможно в ущерб его краткости. Ведь использованная хитрая конструкция, кажется очевидной, вам когда вы ее только написали, но она уже не будет такой когда вы будете читать этот код через некоторое время. Ну и комментарии, конечно, не просто так придуманы.&lt;/p&gt;
+
+&lt;p&gt;Еще эту тему советую посмотреть &lt;a href=&#34;https://youtu.be/z5WkDQVeYU4&#34;&gt;очень интересный доклад&lt;/a&gt;, сделанный Григорием Петровым в рамках одного из прошлогодних минских Python Meetup&amp;rsquo;ов.&lt;/p&gt;
+
+&lt;p&gt;Вот и все что я хотел сказать на сегодня.  Не узнали ничего нового, прочитав эту заметку? А я вас предупреждал :)&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Натройка меню загрузчика GRUB</title>
+      <link>http://www.evnotes.ru/post/menu-grub/</link>
+      <pubDate>Sat, 30 Jan 2016 19:08:14 +0300</pubDate>
+      
+      <guid>http://www.evnotes.ru/post/menu-grub/</guid>
+      <description>&lt;p&gt;На днях, на домашнем компьютере я начисто переустанавливал linux. Он установлен у меня по-соседству с Windows, которую я тоже периодически использую. Поэтому при загрузке меня всегда встречает меню GRUB c выбором ОС. Поведение этого меню по умолчанию, меня не слишком устраивает, поэтому мне пришлось полазать по  конфигам, дабы его изменить. А заодно решил и набросать заметку по настройке GRUB.&lt;/p&gt;
+
+&lt;p&gt;На всякий случай, напомню читателям что такое GRUB.&lt;br /&gt;
+GRUB (&lt;strong&gt;GR&lt;/strong&gt;and &lt;strong&gt;U&lt;/strong&gt;nified &lt;strong&gt;B&lt;/strong&gt;ootloader — Основной Унифицированный Загрузчик) — это программа  находящаяся в первых секторах жесткого диска и первой загружающаяся, после того как BIOS проведет первичный тест работоспособности системы. Она позволяет пользователю выбрать ОС, версию ядра и, при необходимости, передать ему параметры загрузки. GRUB также может передавать управление  другому загрузчику. Например, чтобы загрузить Windows, которая использует свой загрузчик NTLDR.&lt;/p&gt;
+
+&lt;p&gt;Основные настройки загрузчика хранятся в &lt;em&gt;/boot/grub/grub.cfg&lt;/em&gt;. Но изменять его  дело не благодарное, так как после каждого обновления, этот файл создается заново. Генерируется grub.cfg из файла &lt;em&gt;/etc/default/grub&lt;/em&gt; и файлов содержащихся в папке &lt;em&gt;/etc/grub.d&lt;/em&gt;. Чтобы настроить меню выбора ОС при загрузке, нам нужен &lt;em&gt;/etc/default/grub&lt;/em&gt;. Он выглядит как обычный файл настроек типа КЛЮЧ=ЗНАЧЕНИЕ. Вот описание основных из них:&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;GRUB_DEFAULT&lt;/code&gt; — определяет номер пункта меню загрузчика, который выбирается по умолчанию. Нумерация пунктов начинается с 0. Также вместо номера можно указать значение &amp;ldquo;saved&amp;rdquo;. Тогда будет выбираться пункт, использованный при прошлой загрузке. Если это значение не будет работать, то нужно добавить в этот же файл строку &lt;code&gt;GRUB_SAVEDEFAULT=true&lt;/code&gt; Еще можно указать точное название пункта меню (его можно скопировать в &lt;em&gt;/boot/grub/grub.cfg&lt;/em&gt;)&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;GRUB_TIMEOUT&lt;/code&gt; — время, в течении которого отображается меню,. Указывается в секундах. Если установить значение &amp;ldquo;-1&amp;rdquo;. То меню будет отображаться пока пользователь сам не выберет какой-либо пункт.&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;GRUB_HIDDEN_TIMEOUT&lt;/code&gt; — может пригодиться если установлена только одна ОС и меню загрузчика по умолчанию не отображается. Если закомментирован, то позволяет приостановить  загрузку ОС, на указанное количество секунд, в течении которых можно нажать клавишу Esc и вызвать меню загрузчика. Например чтобы выбрать с какой версией ядра загружаться.&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;GRUB_HIDDEN_TIMEOUT_QUIET&lt;/code&gt; — включает/выключает отображение таймера в меню.&lt;/p&gt;
+
+&lt;p&gt;После настройки этих параметров, чтобы пересобрать файл &lt;em&gt;grub.cfg&lt;/em&gt; и применить изменения нужно выполнить следующую команду:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;sudo update-grub
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Также для настройки меню GRUB существует программка с графическим интерфейсом &lt;strong&gt;Grub Customizer&lt;/strong&gt;. Установить её в Ubuntu и производных дистрибутивах можно набором команд:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;sudo add-apt-repository ppa:danielrichter2007/grub-customizer
+sudo apt-get update
+sudo apt-get install grub-customizer
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Хотя если нужно поменять только несколько настроек мне кажется быстрее и удобней будет изменить файл конфигурации.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Выполнение консольных команд в фоновом режиме</title>
+      <link>http://www.evnotes.ru/post/console-foreground/</link>
+      <pubDate>Sat, 23 Jan 2016 18:16:37 +0300</pubDate>
+      
+      <guid>http://www.evnotes.ru/post/console-foreground/</guid>
+      <description>&lt;p&gt;Небольшая заметка по способам перевода консольных команд в фоновый режим и вывода из него.&lt;/p&gt;
+
+&lt;p&gt;Для запуска процесса в фоновом режиме можно добавить символ амперсанда &lt;em&gt;&amp;amp;&lt;/em&gt; в конце команды запуска процесса&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ yes &amp;gt; /dev/null &amp;amp;
+[1] 16252
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Запущенный в обычном режиме процесс можно приостановить и отправить в фоновый режим комбинацией клавиш &lt;strong&gt;ctrl+z&lt;/strong&gt;. А комбинацией &lt;strong&gt;ctrl+с&lt;/strong&gt; прервать выполнение текущего процесса.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ watch ps
+Ctrl-Z
+[2]+  Stopped  watch ps
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Командой &lt;code&gt;fg&lt;/code&gt; (англ. &lt;em&gt;foreground&lt;/em&gt;) можно возобновить выполнение текущего процесса и вывести его его из фона. А команда &lt;code&gt;bg&lt;/code&gt; (англ. &lt;em&gt;background&lt;/em&gt;) возобновляет выполнение процесса, но оставляет его в фоновом режиме.&lt;/p&gt;
+
+&lt;p&gt;Посмотреть список запущенных процессов можно с помощью команды &lt;code&gt;jobs&lt;/code&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ jobs
+[1]-  Running      yes &amp;gt; /dev/null &amp;amp;
+[2]+  Stopped      watch ps
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;В квадратных скобках показывается номер задания, который можно использовать для передачи командам &lt;code&gt;fg&lt;/code&gt; и &lt;code&gt;bg&lt;/code&gt;. Знаком + обозначен текущий процесс, который будет передан командам &lt;code&gt;fg&lt;/code&gt; и &lt;code&gt;bg&lt;/code&gt;, если они запускаются без аргументов. Текущим всегда является процесс к которому обращались последним.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Специфичные типы данных в C</title>
+      <link>http://www.evnotes.ru/post/specific-types-c/</link>
+      <pubDate>Sat, 16 Jan 2016 16:07:37 +0300</pubDate>
+      
+      <guid>http://www.evnotes.ru/post/specific-types-c/</guid>
+      <description>
+
+&lt;p&gt;Дабы самому получше уложить в голове типы данных, не являющихся базовыми, попробую кратко систематизировать информацию о них в этом посте.&lt;/p&gt;
+
+&lt;h2 id=&#34;целочисленные-типы-фиксированного-размера&#34;&gt;Целочисленные типы фиксированного размера&lt;/h2&gt;
+
+&lt;p&gt;В C99 к списку файлов стандартной библиотеки C, среди прочих добавился заголовочный файл &lt;code&gt;&amp;lt;stdint.h&amp;gt;&lt;/code&gt;, в котором определены многие целочисленные типы, которые ранее были определены в разных  файлах:&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;int(N)_t&lt;/code&gt;, &lt;code&gt;uint(N)_t&lt;/code&gt; — типы, всегда занимающие N бит, независимо от платформы;
+&lt;code&gt;int_least(N)_t&lt;/code&gt;, &lt;code&gt;uint_least(N)_t&lt;/code&gt; — типы, занимающие минимум N бит;
+&lt;code&gt;int_fast(N)_t&lt;/code&gt;, &lt;code&gt;uint_fast(N)_t&lt;/code&gt; — аналогичны предыдущим, но имеют самую быструю реализацию для данной машины;
+&lt;code&gt;intmax_t&lt;/code&gt;, &lt;code&gt;uintmax_t&lt;/code&gt; — типы, имеющие максимально возможный размер (используются, например, для вывода через &lt;em&gt;printf&lt;/em&gt; переменных неизвестной длины, используя модификатор &lt;em&gt;j&lt;/em&gt;)&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;N&lt;/strong&gt; может может принимать значения 8, 16, 32 или 64 (например &lt;code&gt;int_least16_t&lt;/code&gt;). Приставка &lt;strong&gt;u&lt;/strong&gt; указывает на то, что тип является беззнаковым.&lt;/p&gt;
+
+&lt;h2 id=&#34;булевы-типы&#34;&gt;Булевы типы&lt;/h2&gt;
+
+&lt;p&gt;C99 добавил поддержку булева типа &lt;code&gt;_Bool&lt;/code&gt;.  Также в новом заголовочном файле &lt;code&gt;&amp;lt;stdbool.h&amp;gt;&lt;/code&gt; определен более удобный псевдоним &lt;code&gt;bool&lt;/code&gt; для этого типа и макросы &lt;strong&gt;true&lt;/strong&gt; и &lt;strong&gt;false&lt;/strong&gt;. Тип &lt;code&gt;_Bool&lt;/code&gt;  является обычным целочисленным типом, с той разницей, что любое присвоенное ему значение, отличное от нуля сохраняется как 1. Кстати, он имеет такое странное название для обеспечения обратной совместимости, так как во многих уже существующих программах был определен свой тип &lt;code&gt;bool&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h2 id=&#34;типы-используемые-для-адресной-арифметики&#34;&gt;Типы используемые для адресной арифметики&lt;/h2&gt;
+
+&lt;p&gt;В эти типы можно записать максимальный индекс самых больших массивов. А также размер указателей и массивов любого типа, который может быть выделен на данной архитектуре. Их использование имеет смысл, так как в настоящее время размер &lt;em&gt;int&lt;/em&gt; не всегда равен размеру машинного слова. Поэтому для обеспечения переносимости и надежности лучше использовать представленные ниже типы в местах, где предполагается их использование.&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;size_t&lt;/code&gt; — беззнаковый целочисленный тип. Широко применяется в стандартной библиотеке для указания размеров в байтах, счетчиков циклов, индексации массивов и адресной арифметики.  Определен в &lt;code&gt;&amp;lt;stddef.h&amp;gt;&lt;/code&gt;.
+&lt;code&gt;uintptr_t&lt;/code&gt; — аналог &lt;code&gt;size_t&lt;/code&gt;. Предполагается использование для безопасного хранения указателей, на что намекает их название.
+&lt;code&gt;ptrdiff_t&lt;/code&gt; — знаковый целочисленный тип. Является типом результата выражения, где один указатель вычитается из другого (ptr1 - ptr2).
+&lt;code&gt;intptr_t&lt;/code&gt; — аналог &lt;code&gt;ptrdiff_t&lt;/code&gt;, но опять же имеет более подходящее название для хранения указателей.&lt;/p&gt;
+
+&lt;h2 id=&#34;математические-типы&#34;&gt;Математические типы&lt;/h2&gt;
+
+&lt;p&gt;В C99 в файле &lt;code&gt;&amp;lt;complex.h&amp;gt;&lt;/code&gt;  добавлены новые типы для поддержки комплексных чисел &lt;code&gt;float _Complex&lt;/code&gt;, &lt;code&gt;double _Complex&lt;/code&gt;, &lt;code&gt;long double _Complex&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;В файле  &lt;code&gt;&amp;lt;math.h&amp;gt;&lt;/code&gt; добавлены типы &lt;code&gt;float_t&lt;/code&gt; и &lt;code&gt;double_t&lt;/code&gt;. Они имеют различные размеры в зависимости от установленного значения константы FLT_EVAL_METHOD. При значении 0 они эквивалентны типам &lt;code&gt;float&lt;/code&gt; и &lt;code&gt;double&lt;/code&gt;, при значении 1 — &lt;code&gt;double&lt;/code&gt;, а при значении 2  — &lt;code&gt;long double&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;И с новым файлом &lt;code&gt;&amp;lt;fenv.h&amp;gt;&lt;/code&gt; пришли новые типы &lt;code&gt;fenv_t&lt;/code&gt; и &lt;code&gt;fexcept_t&lt;/code&gt;. Первый представляет окружение для работы с числами с плавающей точкой, а второй коллекцию флагов этого окружения.&lt;/p&gt;
+
+&lt;h2 id=&#34;другие-типы-местечкового-применения&#34;&gt;Другие типы местечкового применения&lt;/h2&gt;
+
+&lt;p&gt;Также стандартная библиотека определяет еще довольно много типов, таких как: &lt;code&gt;fpos_t&lt;/code&gt;, использующийся для определения позиции каждого байта при чтении/записи, &lt;code&gt;va_list&lt;/code&gt; — для передачи переменного числа аргументов в функцию, &lt;code&gt;wchar_t&lt;/code&gt; — для представления &amp;ldquo;широких символов&amp;rdquo;. Описание всех их может раздуть пост до размеров книги. Да и нет смысла описывать их скопом. Возвращаться к ним лучше при рассмотрении конкретной темы, связанной с областью их применения.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

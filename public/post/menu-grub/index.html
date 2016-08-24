@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Натройка меню загрузчика GRUB</title>
+        <meta name="description" content="Блог любопытного программиста">
+        <meta name="HandheldFriendly" content="True">
+        <meta name="MobileOptimized" content="320">
+        <meta name="generator" content="Hugo 0.16" />
+        <meta name="robots" content="index,follow">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="http://www.evnotes.ru/css/normalize.css">
+        <link rel="stylesheet" href="http://www.evnotes.ru/css/highlight.css">
+        <link rel="stylesheet" href="http://www.evnotes.ru/css/style.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,400,600,700,300&subset=latin,cyrillic-ext,latin-ext,cyrillic">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    </head>
+    <body>
+        
+
+        <div id="wrapper">
+            <header class="site-header">
+                <div class="container">
+                    <div class="site-title-wrapper">
+                        
+                            <a class="button-square button-social hint--top" data-hint="Натройка меню загрузчика GRUB" title="Натройка меню загрузчика GRUB" href="http://www.evnotes.ru/">
+                                <i class="fa fa-home"></i>
+                            </a>
+                        
+                        <a class="button-square" href="http://www.evnotes.ru/index.xml"><i class="fa fa-rss"></i></a>
+                        
+                        
+                            <a class="button-square button-social hint--top" data-hint="Github" title="Github" href="https://github.com/dudd1ts" target="_blank">
+                                <i class="fa fa-github-alt"></i>
+                            </a>
+                        
+                        
+                        
+                        
+                        
+                            <a class="button-square button-social hint--top" data-hint="ВКонтакте" title="ВКонтакте" href="http://vk.com/id16180812" target="_blank">
+                                <i class="fa fa-vk"></i>
+                            </a>
+                        
+                        
+                            <a class="button-square button-social hint--top" data-hint="Email" title="Email" href="mailto:kserg90@gmail.com" target="_blank">
+                                <i class="fa fa-envelope"></i>
+                            </a>
+                        
+                    </div>
+
+                    <ul class="site-nav">
+                        
+    <li class="site-nav-item">
+        <a title="Блог" href="/">Блог</a>
+    </li>
+
+    <li class="site-nav-item">
+        <a title="Об авторе" href="/page/about/">Об авторе</a>
+    </li>
+
+                    </ul>
+                </div>
+            </header>
+
+            <div id="container">
+
+
+<div class="container">
+    <article class="post-container" itemscope="" itemtype="http://schema.org/BlogPosting">
+        <header class="post-header">
+    <h1 class="post-title" itemprop="name headline">Натройка меню загрузчика GRUB</h1>
+    
+    <p class="post-date">
+        <span>Опубликовано <time datetime="2016-01-30" itemprop="datePublished">2016-01-30</time></span>
+        
+    </p>
+</header>
+
+        <div class="post-content clearfix" itemprop="articleBody">
+    
+
+    <p>На днях, на домашнем компьютере я начисто переустанавливал linux. Он установлен у меня по-соседству с Windows, которую я тоже периодически использую. Поэтому при загрузке меня всегда встречает меню GRUB c выбором ОС. Поведение этого меню по умолчанию, меня не слишком устраивает, поэтому мне пришлось полазать по  конфигам, дабы его изменить. А заодно решил и набросать заметку по настройке GRUB.</p>
+
+<p>На всякий случай, напомню читателям что такое GRUB.<br />
+GRUB (<strong>GR</strong>and <strong>U</strong>nified <strong>B</strong>ootloader — Основной Унифицированный Загрузчик) — это программа  находящаяся в первых секторах жесткого диска и первой загружающаяся, после того как BIOS проведет первичный тест работоспособности системы. Она позволяет пользователю выбрать ОС, версию ядра и, при необходимости, передать ему параметры загрузки. GRUB также может передавать управление  другому загрузчику. Например, чтобы загрузить Windows, которая использует свой загрузчик NTLDR.</p>
+
+<p>Основные настройки загрузчика хранятся в <em>/boot/grub/grub.cfg</em>. Но изменять его  дело не благодарное, так как после каждого обновления, этот файл создается заново. Генерируется grub.cfg из файла <em>/etc/default/grub</em> и файлов содержащихся в папке <em>/etc/grub.d</em>. Чтобы настроить меню выбора ОС при загрузке, нам нужен <em>/etc/default/grub</em>. Он выглядит как обычный файл настроек типа КЛЮЧ=ЗНАЧЕНИЕ. Вот описание основных из них:</p>
+
+<p><code>GRUB_DEFAULT</code> — определяет номер пункта меню загрузчика, который выбирается по умолчанию. Нумерация пунктов начинается с 0. Также вместо номера можно указать значение &ldquo;saved&rdquo;. Тогда будет выбираться пункт, использованный при прошлой загрузке. Если это значение не будет работать, то нужно добавить в этот же файл строку <code>GRUB_SAVEDEFAULT=true</code> Еще можно указать точное название пункта меню (его можно скопировать в <em>/boot/grub/grub.cfg</em>)</p>
+
+<p><code>GRUB_TIMEOUT</code> — время, в течении которого отображается меню,. Указывается в секундах. Если установить значение &ldquo;-1&rdquo;. То меню будет отображаться пока пользователь сам не выберет какой-либо пункт.</p>
+
+<p><code>GRUB_HIDDEN_TIMEOUT</code> — может пригодиться если установлена только одна ОС и меню загрузчика по умолчанию не отображается. Если закомментирован, то позволяет приостановить  загрузку ОС, на указанное количество секунд, в течении которых можно нажать клавишу Esc и вызвать меню загрузчика. Например чтобы выбрать с какой версией ядра загружаться.</p>
+
+<p><code>GRUB_HIDDEN_TIMEOUT_QUIET</code> — включает/выключает отображение таймера в меню.</p>
+
+<p>После настройки этих параметров, чтобы пересобрать файл <em>grub.cfg</em> и применить изменения нужно выполнить следующую команду:</p>
+
+<pre><code class="language-bash">sudo update-grub
+</code></pre>
+
+<p>Также для настройки меню GRUB существует программка с графическим интерфейсом <strong>Grub Customizer</strong>. Установить её в Ubuntu и производных дистрибутивах можно набором команд:</p>
+
+<pre><code class="language-bash">sudo add-apt-repository ppa:danielrichter2007/grub-customizer
+sudo apt-get update
+sudo apt-get install grub-customizer
+</code></pre>
+
+<p>Хотя если нужно поменять только несколько настроек мне кажется быстрее и удобней будет изменить файл конфигурации.</p>
+
+</div>
+
+        <footer class="post-footer clearfix">
+    
+
+    <div class="share">
+        <a class="icon-twitter" href="http://twitter.com/share?text=%d0%9d%d0%b0%d1%82%d1%80%d0%be%d0%b9%d0%ba%d0%b0%20%d0%bc%d0%b5%d0%bd%d1%8e%20%d0%b7%d0%b0%d0%b3%d1%80%d1%83%d0%b7%d1%87%d0%b8%d0%ba%d0%b0%20GRUB&url=http%3a%2f%2fwww.evnotes.ru%2fpost%2fmenu-grub%2f"
+            onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+            <i class="fa fa-twitter"></i>
+            <span class="hidden">Twitter</span>
+        </a>
+
+        <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fwww.evnotes.ru%2fpost%2fmenu-grub%2f"
+            onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+            <i class="fa fa-facebook"></i>
+            <span class="hidden">Facebook</span>
+        </a>
+
+        <a class="icon-google-plus" href="https://plus.google.com/share?url=http%3a%2f%2fwww.evnotes.ru%2fpost%2fmenu-grub%2f"
+           onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+           <i class="fa fa-google-plus"></i>
+            <span class="hidden">Google+</span>
+        </a>
+
+        <a class="icon-google-plus" href="http://vk.com/share.php?url=http%3a%2f%2fwww.evnotes.ru%2fpost%2fmenu-grub%2f&title=%d0%9d%d0%b0%d1%82%d1%80%d0%be%d0%b9%d0%ba%d0%b0%20%d0%bc%d0%b5%d0%bd%d1%8e%20%d0%b7%d0%b0%d0%b3%d1%80%d1%83%d0%b7%d1%87%d0%b8%d0%ba%d0%b0%20GRUB"
+           onclick="window.open(this.href, 'vk-share', 'width=490,height=530');return false;">
+           <i class="fa fa-vk"></i>
+            <span class="hidden">Вконтакте</span>
+        </a>
+    </div>
+</footer>
+
+        
+    <div class="comments">
+        <div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'evnotes';
+    var disqus_identifier = 'http:\/\/www.evnotes.ru\/post\/menu-grub\/';
+    var disqus_title = 'Натройка меню загрузчика GRUB';
+    var disqus_url = 'http:\/\/www.evnotes.ru\/post\/menu-grub\/';
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </div>
+
+    </article>
+</div>
+
+            </div>
+        </div>
+
+        <footer class="footer">
+            <div class="container">
+                <div class="site-title-wrapper">
+                    <h1 class="site-title">
+                        <a title="Дело было вечером" href="http://www.evnotes.ru/">Дело было вечером</a>
+                    </h1>
+                    <a class="button-square button-jump-top js-jump-top" href="#">
+                        <i class="fa fa-angle-up"></i>
+                    </a>
+                </div>
+
+                <p class="footer-copyright">
+                    <span>&copy; 2016 Кондрашев Сергей</span>
+                </p>
+                <div class="footer-copyright">
+                    <span>Powered by <a href="http://gohugo.io/">Hugo</a></span>
+                </div>
+                <div class="footer-copyright">
+                    <span><a href="https://github.com/roryg/ghostwriter">Ghostwriter theme</a> By <a href="http://jollygoodthemes.com">JollyGoodThemes</a></span>
+                    <span>/ <a href="https://github.com/jbub/ghostwriter">Ported</a> to Hugo By <a href="https://github.com/jbub">jbub</a></span>
+                </div>
+            </div>
+        </footer>
+
+        <script src="http://www.evnotes.ru/js/jquery-1.11.3.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.5/highlight.min.js"></script>
+        <script src="http://www.evnotes.ru/js/jquery.fitvids.js"></script>
+        <script src="http://www.evnotes.ru/js/scripts.js"></script>
+    </body>
+</html>
+
