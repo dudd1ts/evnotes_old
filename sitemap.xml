@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  
+  <url>
+    <loc>http://www.evnotes.ru/</loc>
+    <lastmod>2016-07-31T02:13:50+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://www.evnotes.ru/page/about/</loc>
+    <lastmod>2016-07-31T02:13:50+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://www.evnotes.ru/post/multiple-python/</loc>
+    <lastmod>2016-02-22T21:41:28+03:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://www.evnotes.ru/post/you-already-knew/</loc>
+    <lastmod>2016-02-10T19:28:46+03:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://www.evnotes.ru/post/menu-grub/</loc>
+    <lastmod>2016-01-30T19:08:14+03:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://www.evnotes.ru/post/console-foreground/</loc>
+    <lastmod>2016-01-23T18:16:37+03:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://www.evnotes.ru/post/specific-types-c/</loc>
+    <lastmod>2016-01-16T16:07:37+03:00</lastmod>
+  </url>
+  
+</urlset>
