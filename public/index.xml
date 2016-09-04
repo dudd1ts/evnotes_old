@@ -7,22 +7,8 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>ru-RU</language>
     <copyright>Кондрашев Сергей</copyright>
-    <lastBuildDate>Sun, 31 Jul 2016 02:13:50 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 22 Feb 2016 21:41:28 +0300</lastBuildDate>
     <atom:link href="http://www.evnotes.ru/index.xml" rel="self" type="application/rss+xml" />
-    
-    <item>
-      <title>Об авторе</title>
-      <link>http://www.evnotes.ru/page/about/</link>
-      <pubDate>Sun, 31 Jul 2016 02:13:50 +0000</pubDate>
-      
-      <guid>http://www.evnotes.ru/page/about/</guid>
-      <description>&lt;p&gt;&lt;img src=&#34;http://www.evnotes.ru/images/foto.jpg&#34; alt=&#34;Фото&#34; class=&#34;main-photo&#34;/&gt; Меня зовут Кондрашев Сергей. Живу я в Санкт-Петрбурге. В настоящее время работаю  инженером-программистом на предприятии занимающемся разработкой приборов для самолетов. На работе я пишу на С. В свободное время постоянно изучаю что-то новое. Ковыряю Linux. Люблю Python. Подтягиваю свой English.&lt;/p&gt;
-
-&lt;p&gt;В блоге пишу в основном о программировании и на связанные с ним темы, а иногда и просто о жизни программистской.&lt;/p&gt;
-
-&lt;p&gt;Связаться со мной можно, написав на email: &lt;a href=&#34;mailto:kserg90@gmail.com&#34;&gt;kserg90@gmail.com&lt;/a&gt;&lt;/p&gt;
-</description>
-    </item>
     
     <item>
       <title>Несколько версий Python в Linux</title>
@@ -220,6 +206,20 @@ Ctrl-Z
 &lt;h2 id=&#34;другие-типы-местечкового-применения&#34;&gt;Другие типы местечкового применения&lt;/h2&gt;
 
 &lt;p&gt;Также стандартная библиотека определяет еще довольно много типов, таких как: &lt;code&gt;fpos_t&lt;/code&gt;, использующийся для определения позиции каждого байта при чтении/записи, &lt;code&gt;va_list&lt;/code&gt; — для передачи переменного числа аргументов в функцию, &lt;code&gt;wchar_t&lt;/code&gt; — для представления &amp;ldquo;широких символов&amp;rdquo;. Описание всех их может раздуть пост до размеров книги. Да и нет смысла описывать их скопом. Возвращаться к ним лучше при рассмотрении конкретной темы, связанной с областью их применения.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Об авторе</title>
+      <link>http://www.evnotes.ru/page/about/</link>
+      <pubDate>Fri, 01 Jan 2016 02:13:50 +0000</pubDate>
+      
+      <guid>http://www.evnotes.ru/page/about/</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;http://www.evnotes.ru/images/foto.jpg&#34; alt=&#34;Фото&#34; class=&#34;main-photo&#34;/&gt; Меня зовут Кондрашев Сергей. Живу я в Санкт-Петрбурге. В настоящее время работаю  инженером-программистом на предприятии занимающемся разработкой приборов для самолетов. На работе я пишу на С. В свободное время постоянно изучаю что-то новое. Ковыряю Linux. Люблю Python. Подтягиваю свой English.&lt;/p&gt;
+
+&lt;p&gt;В блоге пишу в основном о программировании и на связанные с ним темы, а иногда и просто о жизни программистской.&lt;/p&gt;
+
+&lt;p&gt;Связаться со мной можно, написав на email: &lt;a href=&#34;mailto:kserg90@gmail.com&#34;&gt;kserg90@gmail.com&lt;/a&gt;&lt;/p&gt;
 </description>
     </item>
     

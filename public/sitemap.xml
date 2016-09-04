@@ -3,12 +3,7 @@
   
   <url>
     <loc>http://www.evnotes.ru/</loc>
-    <lastmod>2016-07-31T02:13:50+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://www.evnotes.ru/page/about/</loc>
-    <lastmod>2016-07-31T02:13:50+00:00</lastmod>
+    <lastmod>2016-02-22T21:41:28+03:00</lastmod>
   </url>
   
   <url>
@@ -34,6 +29,11 @@
   <url>
     <loc>http://www.evnotes.ru/post/specific-types-c/</loc>
     <lastmod>2016-01-16T16:07:37+03:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://www.evnotes.ru/page/about/</loc>
+    <lastmod>2016-01-01T02:13:50+00:00</lastmod>
   </url>
   
 </urlset>
